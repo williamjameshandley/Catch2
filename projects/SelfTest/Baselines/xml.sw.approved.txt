@@ -7795,6 +7795,41 @@ Message from section two
         </Expression>
         <OverallResults successes="4" failures="0" expectedFailures="0"/>
       </Section>
+      <Section name="Approx" filename="projects/<exe-name>/UsageTests/Matchers.tests.cpp" >
+        <Expression success="true" type="CHECK_THAT" filename="projects/<exe-name>/UsageTests/Matchers.tests.cpp" >
+          <Original>
+            v3, Catch::Approx(v3)
+          </Original>
+          <Expanded>
+            { 1.0, 2.0, 3.0 } Equals: { 1.0, 2.0, 3.0 }
+          </Expanded>
+        </Expression>
+        <Expression success="true" type="CHECK_THAT" filename="projects/<exe-name>/UsageTests/Matchers.tests.cpp" >
+          <Original>
+            v4, Catch::Approx(v4)
+          </Original>
+          <Expanded>
+            { 1.00000001, 2.00000001, 3.00000001 } Equals: { 1.00000001, 2.00000001, 3.00000001 }
+          </Expanded>
+        </Expression>
+        <Expression success="true" type="REQUIRE_THAT" filename="projects/<exe-name>/UsageTests/Matchers.tests.cpp" >
+          <Original>
+            v4, Catch::Approx(v3)
+          </Original>
+          <Expanded>
+            { 1.00000001, 2.00000001, 3.00000001 } Equals: { 1.0, 2.0, 3.0 }
+          </Expanded>
+        </Expression>
+        <Expression success="true" type="REQUIRE_THAT" filename="projects/<exe-name>/UsageTests/Matchers.tests.cpp" >
+          <Original>
+            v3, Catch::Approx(v4)
+          </Original>
+          <Expanded>
+            { 1.0, 2.0, 3.0 } Equals: { 1.00000001, 2.00000001, 3.00000001 }
+          </Expanded>
+        </Expression>
+        <OverallResults successes="4" failures="0" expectedFailures="0"/>
+      </Section>
       <OverallResult success="true"/>
     </TestCase>
     <TestCase name="Vector matchers that fail" tags="[.][failing][matchers][vector]" filename="projects/<exe-name>/UsageTests/Matchers.tests.cpp" >
@@ -7905,6 +7940,25 @@ Message from section two
           </Expanded>
         </Expression>
         <OverallResults successes="0" failures="4" expectedFailures="0"/>
+      </Section>
+      <Section name="Approx" filename="projects/<exe-name>/UsageTests/Matchers.tests.cpp" >
+        <Expression success="false" type="CHECK_THAT" filename="projects/<exe-name>/UsageTests/Matchers.tests.cpp" >
+          <Original>
+            v3, Catch::Approx(v4)
+          </Original>
+          <Expanded>
+            { 1.0, 2.0, 3.0 } Equals: { 1.1, 2.1, 3.1 }
+          </Expanded>
+        </Expression>
+        <Expression success="false" type="CHECK_THAT" filename="projects/<exe-name>/UsageTests/Matchers.tests.cpp" >
+          <Original>
+            v4, Catch::Approx(v3)
+          </Original>
+          <Expanded>
+            { 1.1, 2.1, 3.1 } Equals: { 1.0, 2.0, 3.0 }
+          </Expanded>
+        </Expression>
+        <OverallResults successes="0" failures="2" expectedFailures="0"/>
       </Section>
       <OverallResult success="false"/>
     </TestCase>
@@ -10091,7 +10145,7 @@ loose text artifact
       </Section>
       <OverallResult success="true"/>
     </TestCase>
-    <OverallResults successes="952" failures="123" expectedFailures="21"/>
+    <OverallResults successes="956" failures="125" expectedFailures="21"/>
   </Group>
-  <OverallResults successes="952" failures="122" expectedFailures="21"/>
+  <OverallResults successes="956" failures="124" expectedFailures="21"/>
 </Catch>

@@ -213,6 +213,16 @@ namespace { namespace MatchersTests {
             v2.push_back(1);
             v2.push_back(2);
 
+            std::vector<double> v3;
+            v3.push_back(1);
+            v3.push_back(2);
+            v3.push_back(3);
+            
+            std::vector<double> v4;
+            v4.push_back(1 + 1e-8);
+            v4.push_back(2 + 1e-8);
+            v4.push_back(3 + 1e-8);
+
             std::vector<int> empty;
 
             SECTION("Contains (element)") {
@@ -253,6 +263,13 @@ namespace { namespace MatchersTests {
                 std::reverse(begin(permuted), end(permuted));
                 REQUIRE_THAT(permuted, UnorderedEquals(v));
             }
+            SECTION("Approx") {
+                CHECK_THAT(v3, Catch::Approx(v3));
+                CHECK_THAT(v4, Catch::Approx(v4));
+
+                REQUIRE_THAT(v4, Catch::Approx(v3));
+                REQUIRE_THAT(v3, Catch::Approx(v4));
+            }
         }
 
         TEST_CASE("Vector matchers that fail", "[matchers][vector][.][failing]") {
@@ -264,6 +281,16 @@ namespace { namespace MatchersTests {
             std::vector<int> v2;
             v2.push_back(1);
             v2.push_back(2);
+
+            std::vector<double> v3;
+            v3.push_back(1);
+            v3.push_back(2);
+            v3.push_back(3);
+
+            std::vector<double> v4;
+            v4.push_back(1.1);
+            v4.push_back(2.1);
+            v4.push_back(3.1);
 
             std::vector<int> empty;
 
@@ -295,6 +322,11 @@ namespace { namespace MatchersTests {
 
                 std::reverse(begin(permuted), end(permuted));
                 CHECK_THAT(permuted, UnorderedEquals(v));
+            }
+            SECTION("Approx") {
+
+                CHECK_THAT(v3, Catch::Approx(v4));
+                CHECK_THAT(v4, Catch::Approx(v3));
             }
         }
 
